@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://dplue7ep4ujbi"]
+
+[ext_resource type="Script" path="res://scrpits/Macaco.gd" id="1_rxoio"]
+[ext_resource type="Texture2D" uid="uid://g3rbfxkc6nyu" path="res://assets/Sprite Pack 2/Sprite Pack 2/2 - Mr. Mochi/Idle (32 x 32).png" id="2_e2tbn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fglvr"]
+atlas = ExtResource("2_e2tbn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2dy1"]
+atlas = ExtResource("2_e2tbn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8c4ck"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fglvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2dy1")
+}],
+"loop": true,
+"name": &"MonkeyNormal",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_otd6m"]
+radius = 28.0
+height = 66.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxf57"]
+size = Vector2(347, 20)
+
+[node name="Abreu" type="Node2D"]
+position = Vector2(201, 162)
+
+[node name="Macaco" type="CharacterBody2D" parent="."]
+script = ExtResource("1_rxoio")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Macaco"]
+position = Vector2(15, -28)
+scale = Vector2(3.4375, 2.5)
+sprite_frames = SubResource("SpriteFrames_8c4ck")
+animation = &"MonkeyNormal"
+autoplay = "MonkeyNormal"
+frame_progress = 0.263441
+
+[node name="corpo_macaco" type="CollisionShape2D" parent="Macaco"]
+position = Vector2(14, -9)
+shape = SubResource("CapsuleShape2D_otd6m")
+
+[node name="chao" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="chao"]
+position = Vector2(-13.5, 48)
+shape = SubResource("RectangleShape2D_uxf57")
