@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://c6le6j3tf6ern"]
+
+[ext_resource type="Script" path="res://scrpits/Macaco.gd" id="1_x8b35"]
+[ext_resource type="Texture2D" uid="uid://g3rbfxkc6nyu" path="res://assets/Sprite Pack 2/Sprite Pack 2/2 - Mr. Mochi/Idle (32 x 32).png" id="2_gdq4v"]
+[ext_resource type="Texture2D" uid="uid://cwqxjosmwiys0" path="res://assets/Sprite Pack 2/Sprite Pack 2/2 - Mr. Mochi/Running (32 x 32).png" id="3_bt2jk"]
+[ext_resource type="Texture2D" uid="uid://c50tj8jpo647x" path="res://assets/Sprite Pack 2/Sprite Pack 2/2 - Mr. Mochi/Jumping (32 x 32).png" id="4_5qhhf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5wcoq"]
+size = Vector2(23, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fglvr"]
+atlas = ExtResource("2_gdq4v")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2dy1"]
+atlas = ExtResource("2_gdq4v")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0eyqg"]
+atlas = ExtResource("3_bt2jk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ct3ts"]
+atlas = ExtResource("3_bt2jk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2h84w"]
+atlas = ExtResource("3_bt2jk")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jj156"]
+atlas = ExtResource("3_bt2jk")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8c4ck"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fglvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2dy1")
+}],
+"loop": true,
+"name": &"MonkeyNormal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0eyqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ct3ts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2h84w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jj156")
+}],
+"loop": true,
+"name": &"correr",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_5qhhf")
+}],
+"loop": true,
+"name": &"pular",
+"speed": 5.0
+}]
+
+[node name="Macaco" type="CharacterBody2D"]
+z_as_relative = false
+position = Vector2(0, -11)
+collision_mask = 2
+script = ExtResource("1_x8b35")
+
+[node name="corpo_macaco" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_5wcoq")
+
+[node name="movmonkey" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -9)
+scale = Vector2(1.48828, 1.21875)
+sprite_frames = SubResource("SpriteFrames_8c4ck")
+animation = &"correr"
+autoplay = "MonkeyNormal"
+frame_progress = 0.859579
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
